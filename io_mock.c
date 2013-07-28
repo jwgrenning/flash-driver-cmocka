@@ -38,10 +38,20 @@ static void test_mock_io_write_call_order(void **state) {
     io_write(0xf00d, 0x1dea);
 }
 
+static void test_mock_order_between_mocks_ignores_call_order(void **state) {
+    expect_value(io_write, offset, 0xdead);
+    expect_value(io_write, data, 0xbeef);
+    expect_value(io_read, offset, 0xdead);
+    will_return(io_read, 0x42);
+    io_read(0xdead);
+    io_write(0xdead, 0xbeef);
+}
+
 static const UnitTest tests[] = {
     unit_test(test_mock_io_read),
     unit_test(test_mock_io_write),
     unit_test(test_mock_io_write_call_order),
+    unit_test(test_mock_order_between_mocks_ignores_call_order),
 };
 
 int run_io_mock_tests() {
