@@ -29,9 +29,19 @@ static void test_mock_io_write(void **state) {
     io_write(0xdead, 0xbeef);
 }
 
+static void test_mock_io_write_call_order(void **state) {
+    expect_value(io_write, offset, 0xdead);
+    expect_value(io_write, data, 0xbeef);
+    expect_value(io_write, offset, 0xf00d);
+    expect_value(io_write, data, 0x1dea);
+    io_write(0xdead, 0xbeef);
+    io_write(0xf00d, 0x1dea);
+}
+
 static const UnitTest tests[] = {
     unit_test(test_mock_io_read),
     unit_test(test_mock_io_write),
+    unit_test(test_mock_io_write_call_order),
 };
 
 int run_io_mock_tests() {
