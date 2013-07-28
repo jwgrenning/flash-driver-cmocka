@@ -6,11 +6,13 @@
 
 int run_assert_tests(void);
 int run_io_mock_tests(void);
+int run_flash_tests(void);
 
 int main(void) {
     int total_failures =
             run_assert_tests() +
-            run_io_mock_tests();
+            run_io_mock_tests() +
+            run_flash_tests();
 
     if (total_failures == 0)
         print_message("\nOK - NO TEST FAILURES\n");
