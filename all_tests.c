@@ -20,8 +20,19 @@ static void test_simple_asserts(void **state) {
     assert_true(true);
 }
 
+static void test_set_asserts(void **state) {
+    LargestIntegralType set[] = {10, 20, 30};
+    int set_size = sizeof(set)/sizeof(LargestIntegralType);
+    assert_int_equal(3, set_size);
+    assert_in_set(10, set, set_size);
+    assert_in_set(20, set, set_size);
+    assert_in_set(30, set, set_size);
+    assert_not_in_set(4, set, set_size);
+}
+
 static const UnitTest tests[] = {
         unit_test(test_simple_asserts),
+        unit_test(test_set_asserts),
 };
 
 int main(void) {
