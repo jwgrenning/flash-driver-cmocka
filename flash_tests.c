@@ -15,6 +15,7 @@ static const UnitTest tests[] = {
 };
 
 int run_flash_tests() {
+    print_message("\n============ starting %s\n", __FILE__);
     return run_tests(tests);
 }
 

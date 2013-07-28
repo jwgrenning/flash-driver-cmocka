@@ -36,6 +36,7 @@ static const UnitTest tests[] = {
 };
 
 int run_assert_tests(void) {
+    print_message("\n============ starting %s\n", __FILE__);
     return run_tests(tests);
 }
 

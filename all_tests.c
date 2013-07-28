@@ -14,12 +14,13 @@ int main(void) {
             run_io_mock_tests() +
             run_flash_tests();
 
-    if (total_failures == 0)
-        print_message("\nOK - NO TEST FAILURES\n");
+    print_message("\n============ Summary %s\n", __FILE__);
+   if (total_failures == 0)
+        print_message("OK - NO TEST FAILURES\n");
     else if (total_failures == 1)
-        print_message("\nERROR, 1 TEST FAILED\n");
+        print_message("ERROR, 1 TEST FAILED\n");
     else
-        print_message("\nERROR, %i TESTS FAILED\n", total_failures);
+        print_message("ERROR, %i TESTS FAILED\n", total_failures);
 
     return total_failures;
 }

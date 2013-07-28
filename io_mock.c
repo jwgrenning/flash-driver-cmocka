@@ -55,6 +55,7 @@ static const UnitTest tests[] = {
 };
 
 int run_io_mock_tests() {
+    print_message("\n============ starting %s\n", __FILE__);
     return run_tests(tests);
 }
 
