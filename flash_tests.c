@@ -7,11 +7,20 @@
 
 #include "flash.h"
 
-static void test_nothing(void **state) {
+static void test_program_succeeds_ready_immediately(void **state) {
+
+    expect_value(io_write, offset, 0);
+    expect_value(io_write, data, 0x40);
+    expect_value(io_write, offset, 0xdead);
+    expect_value(io_write, data, 0xbeef);
+    expect_value(io_read, offset, 0);
+    will_return(io_read, 1<<7);
+
+    assert_int_equal(0, flash_program(0xdead, 0xbeef));
 }
 
 static const UnitTest tests[] = {
-        unit_test(test_nothing),
+        unit_test(test_program_succeeds_ready_immediately),
 };
 
 int run_flash_tests() {
