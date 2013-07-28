@@ -5,9 +5,11 @@
 #include <cmocka.h>
 
 int run_assert_tests(void);
+int run_io_mock_tests(void);
 
 int main(void) {
-    return run_assert_tests();
+    return  run_io_mock_tests()
+            + run_assert_tests();
 }
 
 
