@@ -28,12 +28,14 @@
 							<tool id="org.eclipse.linuxtools.cdt.autotools.core.toolchain.tool.gcc.1326103288" name="GCC C Compiler" superClass="org.eclipse.linuxtools.cdt.autotools.core.toolchain.tool.gcc">
 								<option id="gnu.c.compiler.option.include.paths.94635862" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="../../../cpputest/include"/>
+									<listOptionValue builtIn="false" value="/usr/local/include/"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.281183133" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="org.eclipse.linuxtools.cdt.autotools.core.toolchain.tool.gpp.845232492" name="GCC C++ Compiler" superClass="org.eclipse.linuxtools.cdt.autotools.core.toolchain.tool.gpp">
 								<option id="gnu.cpp.compiler.option.include.paths.2106571004" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="../../../cpputest/include"/>
+									<listOptionValue builtIn="false" value="/usr/local/include/"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1814988340" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>

@@ -13,7 +13,7 @@ LDFLAGS		= \
 
 TARGET		= test_runner
 
-SRCS		= all_tests.c assert_tests.c io_mock.c flash.c flash_tests.c
+SRCS		= all_tests.c assert_tests.c io_mock.c flash.c flash_tests.c 
 
 OBJ		= $(SRCS:%.c=%.o) \
 

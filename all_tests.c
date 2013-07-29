@@ -11,8 +11,8 @@ int run_flash_tests(void);
 int main(void) {
     int total_failures =
             run_assert_tests() +
-            run_io_mock_tests() +
-            run_flash_tests();
+            run_flash_tests() +
+            run_io_mock_tests();
 
     print_message("\n============ Summary %s\n", __FILE__);
    if (total_failures == 0)
