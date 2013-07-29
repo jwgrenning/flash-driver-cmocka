@@ -40,9 +40,17 @@ static void test_program_succeeds_after_waiting_for_ready(void **state) {
     assert_int_equal(FLASH_SUCCESS, flash_program(0xdead, 0xbeef));
 }
 
+static void test_program_vpp_error(void **state) {
+    expect_enter_programming_mode(state);
+    expect_io_read(state, 0, 1<<7 | 1<<3);
+
+    assert_int_equal(FLASH_VPP_EROR, flash_program(0xdead, 0xbeef));
+}
+
 static const UnitTest tests[] = {
         unit_test(test_program_succeeds_ready_immediately),
         unit_test(test_program_succeeds_after_waiting_for_ready),
+        unit_test(test_program_vpp_error),
 };
 
 int run_flash_tests() {
