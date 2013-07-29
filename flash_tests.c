@@ -25,14 +25,24 @@ static void expect_enter_programming_mode(void **state)
 }
 
 static void test_program_succeeds_ready_immediately(void **state) {
-	expect_enter_programming_mode(state);
-	expect_io_read(state, 0, 1<<7);
+    expect_enter_programming_mode(state);
+    expect_io_read(state, 0, 1<<7);
+
+    assert_int_equal(FLASH_SUCCESS, flash_program(0xdead, 0xbeef));
+}
+
+static void test_program_succeeds_after_waiting_for_ready(void **state) {
+    expect_enter_programming_mode(state);
+    expect_io_read(state, 0, 0);
+    expect_io_read(state, 0, 0);
+    expect_io_read(state, 0, 1<<7);
 
     assert_int_equal(FLASH_SUCCESS, flash_program(0xdead, 0xbeef));
 }
 
 static const UnitTest tests[] = {
-		unit_test(test_program_succeeds_ready_immediately),
+        unit_test(test_program_succeeds_ready_immediately),
+        unit_test(test_program_succeeds_after_waiting_for_ready),
 };
 
 int run_flash_tests() {
