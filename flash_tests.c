@@ -6,12 +6,16 @@
 
 #include "flash.h"
 
+static void expect_io_write(void **state, io_address addr, io_data data)
+{
+    expect_value(io_write, offset, addr);
+    expect_value(io_write, data, data);
+}
+
 static void expect_enter_programming_mode(void **state)
 {
-    expect_value(io_write, offset, 0);
-    expect_value(io_write, data, 0x40);
-    expect_value(io_write, offset, 0xdead);
-    expect_value(io_write, data, 0xbeef);
+    expect_io_write(state, 0, 0x40);
+    expect_io_write(state, 0xdead, 0xbeef);
 }
 
 static void test_program_succeeds_ready_immediately(void **state) {
