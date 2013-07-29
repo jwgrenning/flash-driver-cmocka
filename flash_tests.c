@@ -16,7 +16,7 @@ static void test_program_succeeds_ready_immediately(void **state) {
     expect_value(io_read, offset, 0);
     will_return(io_read, 1<<7);
 
-    assert_int_equal(0, flash_program(0xdead, 0xbeef));
+    assert_int_equal(FLASH_SUCCESS, flash_program(0xdead, 0xbeef));
 }
 
 static const UnitTest tests[] = {
