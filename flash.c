@@ -1,7 +1,7 @@
 #include "flash.h"
 
 enum {
-    readyBit = 0x80, vppErrorBit = 0x08
+    readyBit = 0x80, vppErrorBit = 0x08, programErrorBit = 0x10
 };
 
 int flash_program(io_address addr, io_data data)
@@ -15,7 +15,9 @@ int flash_program(io_address addr, io_data data)
         status = io_read(0);
 
     if (status & vppErrorBit)
-    	return FLASH_VPP_EROR;
+    	return FLASH_VPP_ERROR;
+    else if (status & programErrorBit)
+    	return FLASH_PROGRAM_ERROR;
 
     return FLASH_SUCCESS;
 }
