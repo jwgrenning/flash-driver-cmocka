@@ -8,7 +8,7 @@ enum {
 };
 
 enum {
-	reset = 0xff, program = 0x40
+    reset = 0xff, program = 0x40
 };
 
 int flash_program(io_address addr, io_data data)
@@ -22,16 +22,16 @@ int flash_program(io_address addr, io_data data)
         status = io_read(0);
 
     if (status == readyBit)
-    	return FLASH_SUCCESS;
+        return FLASH_SUCCESS;
 
     io_write(0, reset);
     if (status & vppErrorBit)
-    	return FLASH_VPP_ERROR;
+        return FLASH_VPP_ERROR;
     else if (status & programErrorBit)
-    	return FLASH_PROGRAM_ERROR;
+        return FLASH_PROGRAM_ERROR;
     else if (status & protectedBlockErrorBit)
-    	return FLASH_PROTECTED_BLOCK_ERROR;
+        return FLASH_PROTECTED_BLOCK_ERROR;
 
-    return -1;
+    return FLASH_INVALID_STATUS_ERROR;
 
 }

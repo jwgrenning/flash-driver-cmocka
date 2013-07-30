@@ -70,12 +70,21 @@ static void test_program_protected_block_error(void **state) {
     assert_int_equal(FLASH_PROTECTED_BLOCK_ERROR, flash_program(0xdead, 0xbeef));
 }
 
+static void test_program_invalid_error(void **state) {
+    expect_enter_programming_mode(state);
+    expect_io_read(state, 0, 1<<7 | 1<<2);
+    expect_reset(state);
+
+    assert_int_equal(FLASH_INVALID_STATUS_ERROR, flash_program(0xdead, 0xbeef));
+}
+
 static const UnitTest tests[] = {
         unit_test(test_program_succeeds_ready_immediately),
         unit_test(test_program_succeeds_after_waiting_for_ready),
         unit_test(test_program_vpp_error),
         unit_test(test_program_program_error),
         unit_test(test_program_protected_block_error),
+        unit_test(test_program_invalid_error),
 };
 
 int run_flash_tests() {
