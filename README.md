@@ -23,3 +23,6 @@ Objective
 Test-drive a flash memory driver using cmocka.  The spec for flash_program is the flowchart found in flash-program-flow-chart.pdf.  Look at io_mock.c to see how to unit test a driver that interacts with hardware through io_read() and io_wite().
 
 
+Thanks
+===================
+Thanks to STMicroelectronics for letting me use their device and specifications in my book: Test-Driven Development for Embedded C.
