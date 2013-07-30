@@ -1,7 +1,10 @@
 #include "flash.h"
 
 enum {
-    readyBit = 0x80, vppErrorBit = 0x08, programErrorBit = 0x10
+    readyBit = 0x80,
+    vppErrorBit = 0x08,
+    programErrorBit = 0x10,
+    protectedBlockErrorBit = 0x02
 };
 
 enum {
@@ -26,6 +29,8 @@ int flash_program(io_address addr, io_data data)
     	return FLASH_VPP_ERROR;
     else if (status & programErrorBit)
     	return FLASH_PROGRAM_ERROR;
+    else if (status & protectedBlockErrorBit)
+    	return FLASH_PROTECTED_BLOCK_ERROR;
 
     return -1;
 

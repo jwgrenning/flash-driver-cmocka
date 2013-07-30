@@ -4,7 +4,7 @@
 #include "io.h"
 
 enum {
-	FLASH_SUCCESS = 0, FLASH_VPP_ERROR, FLASH_PROGRAM_ERROR
+	FLASH_SUCCESS = 0, FLASH_VPP_ERROR, FLASH_PROGRAM_ERROR, FLASH_PROTECTED_BLOCK_ERROR
 };
 
 int flash_program(io_address offset, io_data data);
