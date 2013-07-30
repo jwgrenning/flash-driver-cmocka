@@ -11,16 +11,8 @@ enum {
     reset = 0xff, program = 0x40
 };
 
-int flash_program(io_address addr, io_data data)
+int convertStatusToResult(int status)
 {
-    int status = 0;
-
-    io_write(0, program);
-    io_write(addr, data);
-
-    while ((status & readyBit) == 0)
-        status = io_read(0);
-
     if (status == readyBit)
         return FLASH_SUCCESS;
 
@@ -33,5 +25,17 @@ int flash_program(io_address addr, io_data data)
         return FLASH_PROTECTED_BLOCK_ERROR;
 
     return FLASH_INVALID_STATUS_ERROR;
+}
 
+int flash_program(io_address addr, io_data data)
+{
+    int status = 0;
+
+    io_write(0, program);
+    io_write(addr, data);
+
+    while ((status & readyBit) == 0)
+        status = io_read(0);
+
+    return convertStatusToResult(status);
 }
